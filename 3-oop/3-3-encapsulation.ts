@@ -53,7 +53,37 @@
 
 	const maker1 = CoffeeMaker.makeMachineWithoutInstance(100);
 	maker1.addPackOfCoffeeBeans(2);
-	console.log(maker1);
-	console.log(maker1.makeCoffee(2, "milk", "vanilla"));
-	console.log(maker1);
+	// console.log(maker1);
+	// console.log(maker1.makeCoffee(2, "milk", "vanilla"));
+	// console.log(maker1);
+
+	// getter와 setter
+	// 읽어보면 좋은 자료 : https://ko.javascript.info/property-accessors
+	class User {
+		private ageOfUser: number;
+
+		get fullName(): string {
+			return `${this.firstName} ${this.lastName}`;
+		}
+
+		// get과 set 메소드의 return type은 동일해야 한다.
+		get age(): number {
+			return this.ageOfUser;
+		}
+
+		set age(number: number) {
+			if (number < 0) {
+				throw new Error("Age can't be under 0! 👿");
+			}
+			this.ageOfUser = number;
+		}
+
+		constructor(private firstName: string, private lastName: string) {}
+	}
+	const user = new User("Jake", "Lee");
+
+	user.age = 32;
+
+	console.log(user.fullName);
+	console.log(user);
 }
